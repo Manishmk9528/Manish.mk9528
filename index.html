@@ -1,156 +1,801 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANISH KUMAR | SPACE-TIME ARCHIVE</title>
 
-    <title>Manish Kumar | Nature Photography</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+html{
+  scroll-behavior:smooth;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b0f0d;
-            color: white;
-            line-height: 1.6;
-        }
+body{
+  background:#020204;
+  color:#f5f2ff;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
 
-        header {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 30px;
-            background:
-                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
-                url("images/hero.jpg") center/cover no-repeat;
-        }
+/* =========================
+   BACKGROUND
+========================= */
 
-        .hero h1 {
-            font-size: 55px;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-5;
+  background:
+    radial-gradient(circle at 78% 35%,rgba(111,45,255,.14),transparent 28%),
+    radial-gradient(circle at 15% 80%,rgba(20,100,255,.08),transparent 28%),
+    #020204;
+}
 
-        .hero p {
-            font-size: 20px;
-            color: #d5d5d5;
-        }
+/* =========================
+   NAVIGATION
+========================= */
 
-        .hero-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            border: 1px solid white;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-        }
+nav{
+  position:fixed;
+  z-index:100;
+  top:0;
+  left:0;
+  right:0;
+  padding:22px 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:11px;
+  letter-spacing:3px;
+  background:linear-gradient(#020204ee,transparent);
+}
 
-        section {
-            padding: 70px 8%;
-        }
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:25px;
+}
 
-        .title {
-            text-align: center;
-            font-size: 35px;
-            margin-bottom: 40px;
-        }
+/* =========================
+   HERO
+========================= */
 
-        .intro {
-            max-width: 700px;
-            margin: auto;
-            text-align: center;
-            color: #cccccc;
-            font-size: 18px;
-        }
+.hero{
+  height:100vh;
+  min-height:680px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:100px 7vw;
+  overflow:hidden;
+}
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.copy{
+  position:relative;
+  z-index:10;
+  width:65%;
+}
 
-        .gallery img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
+.kicker{
+  color:#85818f;
+  font-size:11px;
+  letter-spacing:5px;
+  margin-bottom:28px;
+}
 
-        .gallery img:hover {
-            transform: scale(1.03);
-        }
+h1{
+  font-size:clamp(60px,10vw,150px);
+  line-height:.78;
+  letter-spacing:-8px;
+  text-transform:uppercase;
+}
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #050706;
-            color: #999;
-        }
+.gravity-text{
+  display:block;
+  transform-origin:right center;
+  transition:
+    transform .12s linear,
+    letter-spacing .12s linear,
+    filter .12s linear;
+  will-change:transform;
+}
 
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 38px;
-            }
+.sub{
+  margin-top:38px;
+  max-width:520px;
+  color:#9e9aa9;
+  font-size:15px;
+  line-height:1.7;
+}
 
-            .hero p {
-                font-size: 17px;
-            }
+.button{
+  display:inline-block;
+  margin-top:30px;
+  padding:15px 23px;
+  border:1px solid #444;
+  color:white;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:3px;
+  transition:.3s;
+}
 
-            section {
-                padding: 50px 6%;
-            }
-        }
-    </style>
+.button:hover{
+  background:white;
+  color:black;
+}
+
+/* =========================
+   BLACK HOLE
+========================= */
+
+.space{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.black-hole{
+  position:absolute;
+  width:650px;
+  height:650px;
+  right:-135px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+/* gravitational glow */
+
+.gravity-field{
+  position:absolute;
+  width:600px;
+  height:600px;
+  right:0;
+  top:25px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      transparent 20%,
+      rgba(90,30,255,.06) 35%,
+      rgba(100,40,255,.14) 48%,
+      transparent 70%
+    );
+  filter:blur(15px);
+  animation:fieldPulse 4s ease-in-out infinite;
+}
+
+/* accretion disk */
+
+.accretion{
+  position:absolute;
+  inset:35px;
+  border-radius:50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      #4b15d9 30deg,
+      #b96cff 55deg,
+      #ffd1ff 72deg,
+      #4e13d4 100deg,
+      transparent 135deg,
+      transparent 170deg,
+      #6320e8 210deg,
+      #e68cff 245deg,
+      #fff0ff 265deg,
+      #4210bd 300deg,
+      transparent 330deg
+    );
+
+  filter:blur(9px);
+
+  transform:
+    rotateX(68deg)
+    rotateZ(-12deg);
+
+  animation:diskSpin 8s linear infinite;
+}
+
+/* inner disk */
+
+.accretion-inner{
+  position:absolute;
+  inset:75px;
+  border-radius:50%;
+  border:13px solid rgba(132,55,255,.55);
+  filter:blur(6px);
+
+  transform:
+    rotateX(68deg)
+    rotateZ(-12deg);
+
+  animation:diskSpin 5s linear infinite reverse;
+}
+
+/* black event horizon */
+
+.event-horizon{
+  position:absolute;
+  width:270px;
+  height:270px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#000;
+
+  box-shadow:
+    0 0 30px 15px #000,
+    0 0 75px 28px rgba(84,35,220,.32);
+}
+
+/* lensing ring */
+
+.lensing{
+  position:absolute;
+  width:380px;
+  height:150px;
+  left:50%;
+  top:50%;
+  transform:
+    translate(-50%,-50%)
+    rotateX(70deg);
+
+  border:2px solid rgba(221,166,255,.65);
+  border-radius:50%;
+  filter:blur(2px);
+
+  animation:lensingPulse 3s ease-in-out infinite;
+}
+
+.black-hole-label{
+  position:absolute;
+  right:25px;
+  bottom:20px;
+  color:#676371;
+  font-size:9px;
+  letter-spacing:3px;
+  text-align:right;
+}
+
+/* stars */
+
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  border-radius:50%;
+  background:white;
+  opacity:.55;
+  animation:starPulse 3s infinite;
+}
+
+.star1{left:8%;top:20%}
+.star2{left:31%;top:13%}
+.star3{left:52%;top:75%}
+.star4{left:12%;top:67%}
+.star5{left:66%;top:18%}
+.star6{left:43%;top:41%}
+.star7{left:72%;top:78%}
+.star8{left:25%;top:88%}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  padding:120px 7vw;
+}
+
+.muted{
+  color:#777482;
+  font-size:10px;
+  letter-spacing:4px;
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-size:clamp(50px,8vw,110px);
+  line-height:.85;
+  letter-spacing:-5px;
+  text-transform:uppercase;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+  margin-top:55px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+
+.photo{
+  min-height:320px;
+  overflow:hidden;
+  background:#0b0b10;
+  position:relative;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  min-height:320px;
+  object-fit:cover;
+  display:block;
+  transition:.8s;
+  filter:saturate(.8);
+}
+
+.photo:hover img{
+  transform:scale(1.08);
+  filter:saturate(1.2);
+}
+
+.photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.35));
+  pointer-events:none;
+}
+
+.p1{grid-column:span 7}
+.p2{grid-column:span 5}
+.p3{grid-column:span 5}
+.p4{grid-column:span 7}
+
+/* =========================
+   STATEMENT
+========================= */
+
+.statement{
+  border-top:1px solid #202027;
+  border-bottom:1px solid #202027;
+}
+
+.statement .section-title{
+  font-size:clamp(60px,11vw,150px);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+}
+
+.about p{
+  max-width:600px;
+  color:#9c99a6;
+  font-size:17px;
+  line-height:1.9;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  border-top:1px solid #202027;
+  padding:35px 7vw;
+
+  display:flex;
+  justify-content:space-between;
+
+  color:#5e5b67;
+  font-size:9px;
+  letter-spacing:3px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes diskSpin{
+  to{
+    transform:
+      rotateX(68deg)
+      rotateZ(348deg);
+  }
+}
+
+@keyframes lensingPulse{
+  50%{
+    transform:
+      translate(-50%,-50%)
+      rotateX(70deg)
+      scale(1.12);
+
+    opacity:.4;
+  }
+}
+
+@keyframes fieldPulse{
+  50%{
+    transform:scale(1.12);
+    opacity:.6;
+  }
+}
+
+@keyframes starPulse{
+  50%{
+    opacity:.15;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .hero{
+    padding:120px 6vw 70px;
+    align-items:flex-start;
+  }
+
+  .copy{
+    width:100%;
+    padding-top:20px;
+  }
+
+  h1{
+    letter-spacing:-5px;
+  }
+
+  .black-hole{
+    width:430px;
+    height:430px;
+    right:-190px;
+    top:70%;
+  }
+
+  .gravity-field{
+    width:420px;
+    height:420px;
+  }
+
+  .event-horizon{
+    width:180px;
+    height:180px;
+  }
+
+  .accretion{
+    inset:25px;
+  }
+
+  .accretion-inner{
+    inset:55px;
+  }
+
+  .lensing{
+    width:270px;
+    height:105px;
+  }
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .p1,
+  .p2,
+  .p3,
+  .p4{
+    grid-column:span 1;
+  }
+
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  nav div:last-child{
+    display:none;
+  }
+
+  footer{
+    flex-direction:column;
+    gap:14px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <div class="hero">
-            <h1>MANISH KUMAR</h1>
-            <p>Nature • Landscapes • Photography</p>
-            <a href="#gallery" class="hero-button">Explore My Work</a>
-        </div>
-    </header>
+<nav>
+  <b>MK / SPACE-TIME ARCHIVE</b>
 
-    <section>
-        <h2 class="title">About My Photography</h2>
+  <div>
+    <a href="#frames">FRAMES</a>
+    <a href="#about">ABOUT</a>
+  </div>
+</nav>
 
-        <p class="intro">
-            Welcome to my photography portfolio.
-            I capture the beauty of nature, landscapes and
-            the little moments that make the world worth looking at.
-        </p>
-    </section>
 
-    <section id="gallery">
-        <h2 class="title">My Photographs</h2>
+<!-- =========================
+     HERO
+========================= -->
 
-        <div class="gallery">
+<section class="hero">
 
-            <img src="images/photo1.jpg" alt="Nature photograph">
-            <img src="images/photo2.jpg" alt="Landscape photograph">
-            <img src="images/photo3.jpg" alt="Nature photograph">
-            <img src="images/photo4.jpg" alt="Landscape photograph">
-            <img src="images/photo5.jpg" alt="Nature photograph">
-            <img src="images/photo6.jpg" alt="Nature photograph">
+  <div class="space">
 
-        </div>
-    </section>
+    <i class="star star1"></i>
+    <i class="star star2"></i>
+    <i class="star star3"></i>
+    <i class="star star4"></i>
+    <i class="star star5"></i>
+    <i class="star star6"></i>
+    <i class="star star7"></i>
+    <i class="star star8"></i>
 
-    <footer>
-        © 2026 Manish Kumar Photography
-    </footer>
+    <div class="black-hole">
+
+      <div class="gravity-field"></div>
+
+      <div class="accretion"></div>
+
+      <div class="accretion-inner"></div>
+
+      <div class="lensing"></div>
+
+      <div class="event-horizon"></div>
+
+      <div class="black-hole-label">
+        EVENT HORIZON<br>
+        GRAVITY FIELD // ACTIVE
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="copy">
+
+    <div class="kicker">
+      VISUAL ARCHIVE // SPACE-TIME ONLINE
+    </div>
+
+    <h1 id="gravityText">
+
+      <span class="gravity-text">MANISH</span>
+
+      <span class="gravity-text">KUMAR</span>
+
+      <span class="gravity-text">PHOTO</span>
+
+    </h1>
+
+    <p class="sub">
+      A digital collection of landscapes, nature,
+      light and moments captured from the world
+      around me.
+    </p>
+
+    <a class="button" href="#frames">
+      ENTER ARCHIVE ↓
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section id="frames">
+
+  <div class="muted">
+    SELECTED / FRAMES
+  </div>
+
+  <div class="section-title">
+    THE<br>
+    ARCHIVE.
+  </div>
+
+
+  <div class="gallery">
+
+    <div class="photo p1">
+      <img src="images/photo1.jpg" alt="Photography">
+    </div>
+
+    <div class="photo p2">
+      <img src="images/photo2.jpg" alt="Photography">
+    </div>
+
+    <div class="photo p3">
+      <img src="images/photo3.jpg" alt="Photography">
+    </div>
+
+    <div class="photo p4">
+      <img src="images/photo4.jpg" alt="Photography">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STATEMENT
+========================= -->
+
+<section class="statement">
+
+  <div class="section-title">
+    DON'T JUST<br>
+    LOOK.<br>
+    <span>SEE.</span>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about" class="about">
+
+  <div>
+
+    <div class="muted">
+      THE PERSON BEHIND THE LENS
+    </div>
+
+    <div class="section-title">
+      ABOUT<br>
+      ME.
+    </div>
+
+  </div>
+
+
+  <p>
+    I'm Manish Kumar, a photographer fascinated
+    by nature, landscapes, light and the strange
+    beauty hidden inside ordinary moments.
+
+    <br><br>
+
+    This archive is a collection of the moments
+    I decided were worth remembering.
+  </p>
+
+</section>
+
+
+<footer>
+
+  <span>
+    © 2026 MANISH KUMAR
+  </span>
+
+  <span>
+    LIGHT / NATURE / SPACE-TIME
+  </span>
+
+</footer>
+
+
+<script>
+
+/*
+=========================================
+BLACK HOLE GRAVITY TEXT
+=========================================
+The closer the mouse/finger gets to the
+black hole, the more the typography bends.
+=========================================
+*/
+
+const words = document.querySelectorAll(".gravity-text");
+const hole = document.querySelector(".black-hole");
+
+function gravityEffect(x,y){
+
+  const rect = hole.getBoundingClientRect();
+
+  const hx = rect.left + rect.width / 2;
+  const hy = rect.top + rect.height / 2;
+
+  const dx = hx - x;
+  const dy = hy - y;
+
+  const distance = Math.sqrt(dx*dx + dy*dy);
+
+  const influence = Math.max(
+    0,
+    Math.min(1, 1 - distance / 750)
+  );
+
+  words.forEach((word,index)=>{
+
+    const amount = influence * (18 + index * 7);
+
+    const pullX = dx * influence * .08;
+
+    const stretch = 1 + influence * (.35 + index*.08);
+
+    const rotation = dy * influence * .025;
+
+    word.style.transform =
+      `translateX(${pullX}px)
+       scaleX(${stretch})
+       rotate(${rotation}deg)`;
+
+    word.style.letterSpacing =
+      `${-8 + influence * 14}px`;
+
+    word.style.filter =
+      `blur(${influence * 1.3}px)`;
+
+  });
+
+}
+
+
+/* desktop */
+
+document.addEventListener("mousemove",(e)=>{
+
+  gravityEffect(e.clientX,e.clientY);
+
+});
+
+
+/* mobile */
+
+document.addEventListener("touchmove",(e)=>{
+
+  if(!e.touches.length)return;
+
+  gravityEffect(
+    e.touches[0].clientX,
+    e.touches[0].clientY
+  );
+
+},{passive:true});
+
+
+/* reset when mouse leaves */
+
+document.addEventListener("mouseleave",()=>{
+
+  words.forEach(word=>{
+
+    word.style.transform="";
+
+    word.style.letterSpacing="";
+
+    word.style.filter="";
+
+  });
+
+});
+
+</script>
 
 </body>
     </html>
